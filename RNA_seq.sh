@@ -1,0 +1,4 @@
+# Generate genome
+
+# STAR alignment
+
