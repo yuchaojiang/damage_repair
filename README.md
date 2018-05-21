@@ -1,12 +1,12 @@
 # Genome-wide DNA damage and excision repair maps
 ## Damage-seq
-Sequencing protocol described in [this paper]().
+Sequencing protocol described in [this paper](http://www.pnas.org/content/114/26/6758).
 
 Bioinformatic pipeline available [here](https://github.com/yuchaojiang/damage_repair/blob/master/damage_seq.sh). 
 
 
 ## XR-seq
-Sequencing protocol described in [this paper]().
+Sequencing protocol described in [this paper](http://genesdev.cshlp.org/content/29/9/948.short).
 
 Bioinformatic pipeline available [here](https://github.com/yuchaojiang/damage_repair/blob/master/XR_seq.sh). 
 
