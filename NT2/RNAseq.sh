@@ -1,4 +1,4 @@
-# STAR alignment
+# 1) STAR alignment
 
 while read fastq
 do
@@ -11,11 +11,8 @@ do
 sbatch -t 0-10:00 --mem 30000 --wrap="~/yuchaojlab/bin/samtools view -bS "$fastq"_Aligned.out.sam > "$fastq"_Aligned.out.bam; perl ~/yuchaojlab/bin/filter_sam_v2.pl "$fastq"_Aligned.out.bam "$fastq"_Aligned.out.filtered.sam; ~/yuchaojlab/bin/samtools view -bS "$fastq"_Aligned.out.filtered.sam > "$fastq"_Aligned.out.filtered.bam; java -Xmx30G -jar ~/yuchaojlab/bin/picard.jar SortSam INPUT="$fastq"_Aligned.out.filtered.bam OUTPUT="$fastq"_Aligned.out.filtered.sorted.bam SORT_ORDER=coordinate; java -jar ~/yuchaojlab/bin/picard.jar BuildBamIndex I="$fastq"_Aligned.out.filtered.sorted.bam"  --job-name $fastq
 done < fastq.list
 
-
-
-# below is using featurecounts to get read counts
+# 3) Use featurecounts to get read counts
 
 while read fastq; do
 sbatch -t 0-15:00 --mem 40000 --wrap="/nas/longleaf/home/yuchaoj/yuchaojlab/program/subread-1.6.0-source/bin/featureCounts -t exon -g gene_id -a /nas/longleaf/home/yuchaoj/yuchaojlab/lib/Homo_sapiens.GRCh37.75.gtf -o "$fastq".featurecounts.txt "$fastq"_Aligned.out.filtered.sorted.bam"  --job-name $fastq
 done < fastq.list
-
