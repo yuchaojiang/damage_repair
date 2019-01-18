@@ -1,9 +1,3 @@
-
-# srun -t 2-23:00 --mem 50000 --pty /bin/bash
-# module load r/3.4.3
-# R
-
-setwd("/nas/longleaf/home/yuchaoj/yuchaojlab/sancarlab/wentao/RNAseq")
 library(Rsamtools)
 bamlist=as.matrix(read.table('bamlist',head=F))
 insertsize=insertsize.sd=rep(NA,nrow(bamlist))
