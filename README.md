@@ -11,11 +11,11 @@
 
 * Differential damage and repair of DNA-adducts induced by anti-cancer drug cisplatin across mouse organs: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/cross_tissue), [paper](https://www.nature.com/articles/s41467-019-08290-2).
 
-* Single nucleotide resolution analysis of nucleotide excision repair of ribosomal DNA in humans and mice: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/ribo), [paper](https://www.jbc.org/content/294/1/210.short)
+* Single nucleotide resolution analysis of nucleotide excision repair of ribosomal DNA in humans and mice: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/ribo), [paper](https://www.jbc.org/content/294/1/210.short).
 
-* Nucleotide excision repair capacity increases during differentiation of human embryonic carcinoma cells into neurons and muscle cells: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/NT2), [paper](https://www.jbc.org/content/294/15/5914)
+* Nucleotide excision repair capacity increases during differentiation of human embryonic carcinoma cells into neurons and muscle cells: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/NT2), [paper](https://www.jbc.org/content/294/15/5914).
 
-* Excision repair hotspots of UV-induced DNA damage in the human genome: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/hotspot), paper
+* Excision repair hotspots of UV-induced DNA damage in the human genome: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/hotspot), paper.
 
 ## Circadian rhythm detection
-* Systematic evaluations and practical guidelines: [vignettes](https://htmlpreview.github.io/?https://github.com/wenwenm183/Circadian_Genes_Benchmark/blob/master/vignettes/Vignettes-of-Circadian-Paper.html), paper
+* Systematic evaluations and practical guidelines: [vignettes](https://htmlpreview.github.io/?https://github.com/wenwenm183/Circadian_Genes_Benchmark/blob/master/vignettes/Vignettes-of-Circadian-Paper.html), paper.
