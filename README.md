@@ -1,4 +1,4 @@
-# Genome-wide DNA damage and excision repair
+# Genome-wide DNA damage, excision repair, and circadian rhythm
 ## Bioinformatic pre-processing
 
 * Damage-seq: Sequencing protocol described in [this paper](http://www.pnas.org/content/114/26/6758). Bioinformatic pipeline available [here](https://github.com/yuchaojiang/damage_repair/blob/master/damage_seq.sh). 
