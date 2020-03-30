@@ -8,4 +8,6 @@
 * RNA-seq: Bioinformatic pipeline available [here](https://github.com/yuchaojiang/damage_repair/blob/master/RNA_seq.sh). 
 
 ## R scripts for data analysis
-R scripts available [here](https://github.com/yuchaojiang/damage_repair/blob/master/R_scripts).
+
+* Differential damage and repair of DNA-adducts induced by anti-cancer drug cisplatin across mouse organs: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/cross_tissue), [paper](https://www.nature.com/articles/s41467-019-08290-2).
+
