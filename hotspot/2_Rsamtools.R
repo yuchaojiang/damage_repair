@@ -1,12 +1,9 @@
 
-setwd('/nas/longleaf/home/yuchaoj/yuchaojlab/early_repair_new')
-
 library(Rsamtools)
 library(data.table)
 library("BSgenome.Hsapiens.UCSC.hg19")
 genome <- BSgenome.Hsapiens.UCSC.hg19
 
-#install.packages("openxlsx", dependencies = TRUE)
 library('openxlsx')
 sampinfo=read.xlsx('Early_Repair_samp.xlsx')
 
@@ -49,13 +46,10 @@ for(i in 1:nrow(sampinfo)){
   
   reads=c(reads,chr=length(gr))
   
-  
   # only keep reads with length 21 to 31
   # hist(gr$qwidth,100)
   gr=gr[gr$qwidth >=21 & gr$qwidth <=31]
-  # hist(gr$qwidth,100)
   reads=c(reads,qwidth=length(gr))
-  
   
   # plot nucleotide frequency
   gr.plus=gr[gr@strand=='+']
@@ -128,9 +122,7 @@ for(i in 1:nrow(sampinfo)){
   dev.off()
   
   save(gr, file=paste('XR_',sampinfo$time[i],'_',sampinfo$replicate[i],'_gr_qc.rda',sep=''))
-  
-  
-  
+
   
   # gene body from hg19: only look at reads within gene bodies
   hg19=read.csv('gene.info.csv')
@@ -159,7 +151,6 @@ for(i in 1:nrow(sampinfo)){
   reads=c(reads, genebody=length(gr))
   save(reads,file=paste('XR_',sampinfo$time[i],'_',sampinfo$replicate[i],'_reads.rda',sep=''))
   save(gr, file=paste('XR_',sampinfo$time[i],'_',sampinfo$replicate[i],'_gr_qc_gene.rda',sep=''))
-  
   
   
   # getting reads
@@ -200,16 +191,11 @@ for(i in 1:nrow(sampinfo)){
 }
 
 
-
-setwd("~/Dropbox/Sancar_Lab/wentao_early_repair_new/analysis/data_11122019/")
-
-
 library(Rsamtools)
 library(data.table)
 library("BSgenome.Hsapiens.UCSC.hg19")
 genome <- BSgenome.Hsapiens.UCSC.hg19
 
-#install.packages("openxlsx", dependencies = TRUE)
 library('openxlsx')
 sampinfo=read.xlsx('Early_Repair_samp.xlsx')
 i=1

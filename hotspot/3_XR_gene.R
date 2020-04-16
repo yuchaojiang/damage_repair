@@ -1,4 +1,3 @@
-setwd("~/Dropbox/Sancar_Lab/wentao_early_repair_new/analysis/data_11122019/")
 
 library(Rsamtools)
 library(data.table)
@@ -26,10 +25,7 @@ for(i in 1:nrow(XR_samp)){
 }
 
 XR=XR_TS+XR_NTS
-
-
 dim(XR_TS); dim(XR_NTS); dim(XR); dim(XR_samp); dim(geneinfo)
-
 
 
 # get the numnber of TT dimers in plus and minus strand 
@@ -130,10 +126,6 @@ dim(XR_TS.RPKM);dim(XR_NTS.RPKM); dim(XR_TS); dim(XR_NTS); dim(XR_samp); dim(gen
 save.image(file='XR_gene_processing.rda')
 
 
-
-
-setwd("~/Dropbox/Sancar_Lab/wentao_early_repair_new/analysis/data_11122019/")
-setwd("C:/Users/yuchaoj/Dropbox/Sancar_Lab/wentao_early_repair_new/analysis/data_11122019/")
 
 library(Rsamtools)
 library(data.table)
@@ -249,9 +241,6 @@ save.image(file='XR_gene_processing_qc.rda')
 
 
 
-setwd("~/Dropbox/Sancar_Lab/wentao_early_repair_new/analysis/data_11122019/")
-setwd("C:/Users/yuchaoj/Dropbox/Sancar_Lab/wentao_early_repair_new/analysis/data_11122019/")
-
 library(Rsamtools)
 library(data.table)
 library(ggplot2)
@@ -274,31 +263,8 @@ plot.gene=function(gene,...){
   p+ggtitle(paste('(6-4)PP repair: ',gene,' (',gene.length,'kb)',sep=''))
 }
 
-plot.gene('NPAS2')
-plot.gene('ATR')
-plot.gene('TP53')
-plot.gene('XPA')
 
-# Long genes
-plot.gene('MSH3')
-plot.gene('NPAS2')
-plot.gene('ATR')
-
-# Short genes
-plot.gene('MYC')
-plot.gene('DBP')
-plot.gene('TP53')
-plot.gene('BRAF')
-plot.gene('NRAS')
-plot.gene('MITF')
-plot.gene('EGFR')
-plot.gene('CCND1')
-plot.gene('CDKN2A')
-plot.gene('PTEN')
-
-
-
-# Repair genes
+# Circadian and repair genes
 plot.gene('CLOCK')
 plot.gene('ARNTL') # BMAL1
 plot.gene('NPAS2')
