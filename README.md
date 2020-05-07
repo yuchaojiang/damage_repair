@@ -1,11 +1,11 @@
 # Genome-wide DNA damage, excision repair, and circadian rhythm
 ## Bioinformatic pre-processing
 
-* Damage-seq: Sequencing protocol described in [this paper](http://www.pnas.org/content/114/26/6758). Bioinformatic pipeline available [here](https://github.com/yuchaojiang/damage_repair/blob/master/damage_seq.sh). 
+* Damage-seq: Sequencing protocol described in [this paper](http://www.pnas.org/content/114/26/6758). Bioinformatic pipeline available [here](https://github.com/yuchaojiang/damage_repair/blob/master/bioinfo/damage_seq.sh). 
 
-* XR-seq: Sequencing protocol described in [this paper](http://genesdev.cshlp.org/content/29/9/948.short). Bioinformatic pipeline available [here](https://github.com/yuchaojiang/damage_repair/blob/master/XR_seq.sh). 
+* XR-seq: Sequencing protocol described in [this paper](http://genesdev.cshlp.org/content/29/9/948.short). Bioinformatic pipeline available [here](https://github.com/yuchaojiang/damage_repair/blob/master/bioinfo/XR_seq.sh). 
 
-* RNA-seq: Bioinformatic pipeline available [here](https://github.com/yuchaojiang/damage_repair/blob/master/RNA_seq.sh). 
+* RNA-seq: Bioinformatic pipeline available [here](https://github.com/yuchaojiang/damage_repair/blob/master/bioinfo/RNA_seq.sh). 
 
 ## R scripts for data analysis
 
