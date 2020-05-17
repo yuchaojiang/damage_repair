@@ -15,7 +15,7 @@
 
 * Nucleotide excision repair capacity increases during differentiation of human embryonic carcinoma cells into neurons and muscle cells: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/differentiation), [paper](https://www.jbc.org/content/294/15/5914).
 
-* Excision repair hotspots of UV-induced DNA damage in the human genome: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/hotspot), [paper](https://www.biorxiv.org/content/10.1101/2020.04.04.024729v1).
+* Excision repair hotspots of UV-induced DNA damage in the human genome: [scripts](https://github.com/yuchaojiang/damage_repair/blob/master/hotspot), [paper](https://www.biorxiv.org/content/10.1101/2020.04.16.045369v1).
 
 ## Circadian rhythm detection
 * Systematic evaluations and practical guidelines: [vignettes](https://htmlpreview.github.io/?https://github.com/wenwenm183/Circadian_Genes_Benchmark/blob/master/vignettes/Vignettes-of-Circadian-Paper.html), [paper](https://www.biorxiv.org/content/10.1101/2020.04.04.024729v3).
