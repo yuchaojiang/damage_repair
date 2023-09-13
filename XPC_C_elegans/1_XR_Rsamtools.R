@@ -1,10 +1,10 @@
 setwd("~/Dropbox/Sancar/Cansu_new/scripts/")
 
-# The reference file Cansu sent is the same as BSgenome.Celegans.UCSC.ce11
 library(Rsamtools)
-library(BSgenome.Celegans.UCSC.ce11)
+library(BSgenome.Celegans.UCSC.ce11) # The same as Caenorhabditis_elegans.WBcel235.dna.toplevel.fa 
+library(ggplot2)
 
-sampinfo=as.data.frame(readxl::read_excel('CelegansXPCsampleINFO_new.xlsx'))
+sampinfo=as.data.frame(readxl::read_excel('CelegansXPCsampleINFO.xlsx'))
 sampinfo$Repair_time=factor(sampinfo$Repair_time,
                             levels=c('5min','1h','8h','16h','24h','48h'))
 genome=BSgenome.Celegans.UCSC.ce11
@@ -239,7 +239,6 @@ sampinfo=cbind(sampinfo, reads.all)
 save(sampinfo,file='sampinfo.rda')
 write.csv(sampinfo, file='sampinfo_with_reads.csv', row.names = F)
 
-library(ggplot2)
 p <- ggplot(sampinfo, aes(total_mapped, qwidth, label = Repair_time))
 p + geom_point(aes(colour = Strain, shape=Damage)) + geom_text(vjust = 0, nudge_y = 0.02) +
   labs(x='Total mapped reads', y='Total mapped reads after QC')

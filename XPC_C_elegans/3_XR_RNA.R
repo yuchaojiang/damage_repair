@@ -6,6 +6,9 @@ library(ape)
 library(ggvenn)
 library(pheatmap)
 library(rtracklayer)
+library(Signac)
+
+source('0_XR_misc.R')
 
 # Generate consecutive bins
 bin.size=200 # bin size of 200bp
@@ -65,36 +68,11 @@ genome.bin.gr
 
 
 # Remove blacklist regions in the ce11 region: https://satijalab.org/signac/reference/blacklist_ce11.html
-library(Signac)
 seqlevelsStyle(blacklist_ce11)='ncbi'
 genome.bin.gr=genome.bin.gr[countOverlaps(genome.bin.gr, blacklist_ce11)==0]
 genome.bin.gr
 
-
 # Conventional RNA-seq carried out by Cansu
-get.gr=function(bamname){
-  bamFile=BamFile(bamname)
-  what <- c("rname","pos","strand","mapq","qwidth")
-  flag <- scanBamFlag(isUnmappedQuery = FALSE, 
-                      hasUnmappedMate = FALSE,
-                      isNotPassingQualityControls = FALSE,
-                      isPaired = TRUE, isProperPair = TRUE,
-                      isFirstMateRead = TRUE) # This is needed to generate the strand-specific RNA-seq bigwig file
-                                              # We only take the first read from the mate pair
-  param <- ScanBamParam(what = what, flag = flag)
-  aln <- scanBam(bamFile, param=param)
-  aln=aln[[1]]
-  qwidth=aln$qwidth
-  seqnames=as.character(Rle(aln$rname))
-  table(seqnames)
-  seqnames[seqnames=='MtDNA']='MT'
-  gr= GRanges(seqnames=seqnames,
-              ranges=IRanges(start=aln$pos,end=aln$pos+aln$qwidth-1),
-              strand=Rle(aln$strand),
-              mapq = aln$mapq,
-              qwidth=aln$qwidth)
-  return(gr)
-}
 gr.xpc.rna=get.gr('../RNA_seq/xpc_Aligned.out.sorted.bam')
 gr.wt.rna=get.gr('../RNA_seq/wt_Aligned.out.sorted.bam')
 
@@ -159,22 +137,6 @@ abline(a=0,b=1, col='red', lty=2)
 temp=cor.test((count.mat.RNA[1,]), (count.mat.RNA[2,]))
 title(paste('WT RNA-seq vs XPC RNA-seq: r =', signif(temp$estimate,3)))
 
-panel.cor <- function(x,y,digits = 2,prefix = "",cex.cor = NULL,...)
-  {
-    usr <- par("usr")
-    on.exit(par(usr))
-    par(usr = c(0, 1, 0, 1))
-    filter = !is.na(y) &
-      !is.na(x) &
-      !is.nan(x) & !is.nan(y) & !is.infinite(x) & !is.infinite(y)
-    r <- cor(x[filter], y[filter])
-    r.temp = abs(r)
-    txt <- format(c(r, 0.123456789), digits = digits)[1]
-    txt <- paste0(prefix, 'r = ', txt)
-    cex.cor <- 1
-    text(0.5, 0.5, txt, cex = cex.cor * r.temp * 2.5)
-  }
-
 count.mat=cbind(t(count.mat.RNA),
                 XPC_XRseq_64_rep1=apply(count.mat.XR[grepl('6-4',rownames(count.mat.XR)) & grepl('_1',rownames(count.mat.XR)),],2,median),
                 XPC_XRseq_64_rep2=apply(count.mat.XR[grepl('6-4',rownames(count.mat.XR)) & grepl('_2',rownames(count.mat.XR)),],2,median),
@@ -196,10 +158,6 @@ rm(count.mat2)
 save.image(file='XR_RNA.rda')
 
 
-
-
-
-
 setwd("~/Dropbox/Sancar/Cansu_new/scripts/")
 
 library(Rsamtools)
@@ -209,6 +167,7 @@ library(ggvenn)
 library(pheatmap)
 library(rtracklayer)
 library(patchwork)
+source('0_XR_misc.R')
 
 load('XR_RNA.rda')
 
@@ -301,15 +260,6 @@ int.regions=Signac::StringToGRanges(rownames(count.mat.focused), sep = c(':','-'
 set.seed(1)
 rand.regions=sample(genome.bin.gr, length(int.regions))
 
-get.score=function(gr.query, gr.ref){
-  output=rep(0, length(gr.query))
-  gr.ref=gr.ref[countOverlaps(gr.ref, gr.query)>0] # simplify ref
-  hits=findOverlaps(gr.query, gr.ref)
-  score = aggregate(gr.ref, hits, score=mean(score))$score
-  output[unique(hits@from)]=score
-  return(output)
-}
-
 int.atac=get.score(int.regions, gr.atac)
 rand.atac=get.score(rand.regions, gr.atac)
 
@@ -328,7 +278,7 @@ rand.H3K27me3=get.score(rand.regions, gr.H3K27me3)
 int.H3K36me3=get.score(int.regions, gr.H3K36me3)
 rand.H3K36me3=get.score(rand.regions, gr.H3K36me3)
 
-pdf(file='RNA_XR_boxplot.pdf', width=8, height=10)
+pdf(file='RNA_XR_epigenomics_boxplot.pdf', width=8, height=10)
 par(mfrow=c(3,2))
 boxplot(log(int.atac+1), log(rand.atac+1), main='ATAC-seq', ylab='log(score +1)',
         names=c('XR_nascent_regions','Random_regions'), outline=FALSE)
@@ -344,15 +294,25 @@ boxplot(int.H3K36me3, rand.H3K36me3, main='H3K36me3', ylab='score',
         names=c('XR_nascent_regions','Random_regions'), outline=FALSE)
 dev.off()
 
+# ggplot2 violin plot
+p1=ggplot2.vioplot(log(int.atac+1), log(rand.atac+1), main='ATAC-seq', ylab='log(score +1)',
+        names=c('Nascent Repair','Random'), outline=FALSE)
+p2=ggplot2.vioplot(log(int.dnase+1), log(rand.dnase+1), main='DNase', ylab='log(score +1)',
+                   names=c('Nascent Repair','Random'), outline=FALSE)
+p3=ggplot2.vioplot(int.H3K4me1, rand.H3K4me1, main='H3K4me1', ylab='score',
+                   names=c('Nascent Repair','Random'), outline=FALSE)
+p4=ggplot2.vioplot(int.H3K4me3, rand.H3K4me3, main='H3K4me3', ylab='score',
+                   names=c('Nascent Repair','Random'), outline=FALSE)
+p5=ggplot2.vioplot(int.H3K27me3, rand.H3K27me3, main='H3K27me3', ylab='score',
+                   names=c('Nascent Repair','Random'), outline=FALSE)
+p6=ggplot2.vioplot(int.H3K36me3, rand.H3K36me3, main='H3K36me3', ylab='score',
+                   names=c('Nascent Repair','Random'), outline=FALSE)
+
+ggsave(plot = p1+p2+p3+p4+p5+p6+plot_layout(ncol=2), filename = 'RNA_XR_epigenomics_vioplot.pdf', width=5, height=7)
+
 # Export bigwig files
 genome=BSgenome.Celegans.UCSC.ce11
 seqlevelsStyle(genome)='ncbi'
-export.bigwig=function(gr, bigwig.name){
-  temp=disjoin(gr)
-  temp$score=countOverlaps(temp, gr)/length(gr)*10^6
-  seqinfo(temp)=seqinfo(genome)
-  rtracklayer::export.bw(temp, con = paste0("../bigwig/",bigwig.name,'.bw'))
-}
 
 # RNA-seq for WT and XPC
 export.bigwig(gr.xpc.rna[gr.xpc.rna@strand=='+'], 'RNA_xpc_plus')

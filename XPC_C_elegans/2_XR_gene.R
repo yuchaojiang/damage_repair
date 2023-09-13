@@ -4,6 +4,8 @@ library(Rsamtools)
 library(BSgenome.Celegans.UCSC.ce11)
 library(ggrepel)
 library(ggplot2)
+source('0_XR_misc.R')
+
 genome=BSgenome.Celegans.UCSC.ce11
 load('sampinfo.rda')
 XR_samp=sampinfo; rm(sampinfo)
@@ -73,14 +75,7 @@ for(chr in c('II','III','IV','V','X')){
   geneinfo[which(geneinfo$chr==chr),'TT.NTS']=TT.NTS.chr
 }
 
-panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...)
-{ usr <- par("usr"); on.exit(par(usr))
-  par(usr = c(0, 1, 0, 1))
-  r <- abs(cor(x, y))
-  txt <- format(c(r, 0.123456789), digits = digits)[1]
-  txt <- paste0(prefix, txt)
-  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
-  text(0.5, 0.5, txt, cex = cex.cor * r*2)}
+
 genelength=geneinfo$end-geneinfo$start+1
 
 pairs(cbind(log.gene.length=log(genelength), log.TT.TS=log(geneinfo$TT.TS+1), log.TT.NTS=log(geneinfo$TT.NTS+1)),
