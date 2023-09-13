@@ -1,4 +1,3 @@
-setwd("~/Dropbox/Sancar/Cansu_new/scripts/")
 
 library(Rsamtools)
 library(BSgenome.Celegans.UCSC.ce11)
@@ -157,8 +156,6 @@ rm(count.mat2)
 
 save.image(file='XR_RNA.rda')
 
-
-setwd("~/Dropbox/Sancar/Cansu_new/scripts/")
 
 library(Rsamtools)
 library(BSgenome.Celegans.UCSC.ce11)
