@@ -1,4 +1,3 @@
-setwd("~/Dropbox/Sancar/Cansu_new/scripts/")
 
 library(Rsamtools)
 library(BSgenome.Celegans.UCSC.ce11) # The same as Caenorhabditis_elegans.WBcel235.dna.toplevel.fa 
