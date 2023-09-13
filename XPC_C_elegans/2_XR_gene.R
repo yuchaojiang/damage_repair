@@ -1,4 +1,3 @@
-setwd("~/Dropbox/Sancar/Cansu_new/scripts/")
 
 library(Rsamtools)
 library(BSgenome.Celegans.UCSC.ce11)
@@ -131,10 +130,6 @@ dim(XR_TS.RPKM);dim(XR_NTS.RPKM); dim(XR_TS); dim(XR_NTS); dim(XR_samp); dim(gen
 save.image(file='XR_gene_processing.rda')
 
 
-
-
-
-setwd("~/Dropbox/Sancar/Cansu_new/scripts/")
 
 library(Rsamtools)
 library(BSgenome.Celegans.UCSC.ce11)
