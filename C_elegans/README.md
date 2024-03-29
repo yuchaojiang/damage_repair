@@ -1,1 +1,1 @@
-This folder contains scripts used for the analyses carried out in Kose et al. 2024 ([link](https://www.biorxiv.org/content/10.1101/2023.10.12.562083v1)). If you have questions, email yuchaojiang at tamu dot edu.
+This folder contains scripts used for the analyses carried out in Kose et al. 2024 ([link](https://www.biorxiv.org/content/10.1101/2023.10.12.562083v2)). If you have questions, email yuchaojiang at tamu dot edu.
